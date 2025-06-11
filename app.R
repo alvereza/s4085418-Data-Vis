@@ -593,17 +593,14 @@ server <- function(input, output, session) {
       coord_fixed(1.3)
     
     ggplotly(p, tooltip = "text", height = 550) %>%
-      layout(
-        hoverlabel = list(bgcolor = "white", font = list(size = 12)),
-        margin = list(l = 10, r = 10, t = 10, b = 10),
-        dragmode = "zoom",
-        showlegend = TRUE
-      ) %>%
-      config(
-        displayModeBar = TRUE,
-        modeBarButtonsToRemove = c("select2d", "lasso2d", "autoScale2d"),
-        displaylogo = FALSE
-      )
+  layout(
+    hoverlabel = list(bgcolor = "white", font = list(size = 12)),
+    margin = list(l = 10, r = 10, t = 10, b = 10),
+    showlegend = TRUE
+  ) %>%
+  config(
+    displayModeBar = FALSE  # 🔥 This disables all toolbar buttons
+  )
   })
   
   # Trends chart
