@@ -18,8 +18,8 @@ library(shinydashboard)
 library(shinyWidgets)
 
 # Screen dimensions (easy to modify)
-SCREEN_WIDTH <- 1512
-SCREEN_HEIGHT <- 982
+SCREEN_WIDTH <- 1920
+SCREEN_HEIGHT <- 1080
 
 # Load and process data
 data <- read.csv("lifeexpectancy_processed.csv", stringsAsFactors = FALSE)
