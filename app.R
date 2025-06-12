@@ -201,7 +201,7 @@ ui <- navbarPage(
         display: flex;
         flex-direction: column;
         padding: 0 15px 15px 15px;
-        overflow-y: auto;
+        overflow-y: hidden;
         overflow-x: hidden;
       }
 
