@@ -18,7 +18,7 @@ library(shinydashboard)
 library(shinyWidgets)
 
 SCREEN_WIDTH <- 1920
-SCREEN_HEIGHT <- 1000
+SCREEN_HEIGHT <- 1080
 
 # Load and process data
 data <- read.csv("lifeexpectancy_processed.csv", stringsAsFactors = FALSE)
@@ -200,7 +200,7 @@ ui <- navbarPage(
         height: 100%;
         display: flex;
         flex-direction: column;
-        padding: 0 15px;
+        padding: 0 15px 15px 15px;
         overflow-y: auto;
         overflow-x: hidden;
       }
@@ -292,7 +292,7 @@ ui <- navbarPage(
             
             h3("Understanding the Data Interface"),
             p("Understanding the health outcomes is really important. The right side dataset does not only represent numbers. It represents countless efforts of a lot of doctors, nurses, scientists etc. The dataset on the right has different columns with different data in it. The dataset is sourced from WHO and UN. This dataset has been used to make the next page(s) visualizations and to tell the whole story. Not all the columns are shown there. Only the most important ones. However the dataset can be filtered with different factors to have a proper look."),
-            
+          
             
             p("With filters for country, development status, time range, and life expectancy bands, users can isolate specific factors and compare across regions. This targeted analysis helps uncover correlations and disparities often hidden in large datasets."),
             
@@ -331,7 +331,7 @@ ui <- navbarPage(
     )
   ),
   
-# Page 2: World Map
+  # Page 2: World Map
   tabPanel(
     "Global Perspective",
     value = "map",
@@ -375,6 +375,7 @@ ui <- navbarPage(
           )
         ),
         
+        # Full width BMI section
         fluidRow(
           column(
             width = 12,
@@ -395,7 +396,6 @@ ui <- navbarPage(
         )
     )
   ),
-  
   
   # Page 3: Temporal Trends
   tabPanel(
@@ -430,7 +430,7 @@ ui <- navbarPage(
                      )
                  ),
                  
-                 div(style = "margin-top: 10px;",
+                 div(style = "margin-top: 20px;",
                      h3("Visualization Breakdown"),
                      tags$ul(style = "font-size: 13px; line-height: 1.5;",
                              tags$li(tags$strong("BMI vs Life Expectancy:"), " Shows that individuals with a 'Normal' BMI live shorter lives than those classified as overweight — reflecting a paradox observed in many epidemiological studies."),
@@ -442,7 +442,7 @@ ui <- navbarPage(
                      p("The data trends presented in this dashboard provide strong evidence of global health improvements over the 15-year period, particularly in areas like disease prevention and life expectancy. It is encouraging to observe steady progress in vaccination coverage, with Hepatitis B, polio, and measles showing significant increases over time. These improvements demonstrate the positive impact of coordinated global health initiatives and public health policies, especially in low- and middle-income countries. However, the gap between developed and developing nations remains evident. While both groups show upward trends in life expectancy, developing countries consistently lag behind. This suggests that although medical advancements are becoming more accessible, structural issues such as poverty, limited infrastructure, and unequal resource distribution continue to limit health outcomes for many populations. The data highlights the importance of sustained investment in healthcare access, education, and local health systems. One particularly interesting observation emerged from the BMI and life expectancy relationship. Contrary to popular assumptions, individuals with a 'normal' BMI sometimes showed lower average life expectancy than those in the 'overweight' category. This outcome supports findings from other epidemiological research and highlights the complex nature of health data, where simple classifications do not always reflect broader lived realities. It also suggests that factors like chronic disease, nutrition quality, and healthcare access play important roles beyond BMI values alone. Overall, this analysis reinforced my understanding that data visualization is more than just a technical tool—it is a way of uncovering human stories. By translating large datasets into accessible visuals, we can gain insights into real-world issues and begin to identify where change is most needed. This assignment has helped me appreciate how health data can drive more informed, compassionate, and equitable decision-making."),
                      
                      
-                 )
+                     )
           ),
           
           column(7,
@@ -451,10 +451,10 @@ ui <- navbarPage(
                  )
           )
         ),
-        div(style = "margin-top: 5px; width: 100%;",
-            h3("Conclusion"),
-            p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy.She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance."),
-            
+        div(style = "margin-top: 20px; width: 100%;",
+             h3("Conclusion"),
+             p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy."),
+             p("She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance.")
         )
     )
   )
@@ -671,4 +671,4 @@ server <- function(input, output, session) {
 }
 
 # Run the app
-shinyApp(ui = ui, server = server) 
+shinyApp(ui = ui, server = server)
