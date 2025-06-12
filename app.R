@@ -165,7 +165,7 @@ ui <- navbarPage(
         height: 100% !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
-        padding: 15px !important;
+        padding: 5px !important;
       }
       
       /* Typography */
