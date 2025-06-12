@@ -587,30 +587,31 @@ server <- function(input, output, session) {
   output$trends_chart <- renderPlotly({
     req(input$trend_analysis)
     
-    # Create the base plot based on analysis type
-    plot_result <- if (input$trend_analysis == "disease") {
+    if (input$trend_analysis == "disease") {
+      # Disease Prevention Progress
       req(input$intervention_type)
       selected_intervention <- input$intervention_type
       
       y_label <- switch(selected_intervention,
-                        "hepatitisb" = "Hepatitis B Coverage (%)",
-                        "measles" = "Measles Cases",
-                        "polio" = "Polio Coverage (%)",
-                        "diphtheria" = "Diphtheria Coverage (%)",
-                        "hivaids" = "HIV/AIDS Deaths (per 100,000)"
+                        "hepatitisb"   = "Hepatitis B Coverage (%)",
+                        "measles"      = "Measles Cases",
+                        "polio"        = "Polio Coverage (%)",
+                        "diphtheria"   = "Diphtheria Coverage (%)",
+                        "hivaids"      = "HIV/AIDS Deaths (per 100,000)"
       )
       
-      plot_ly(health_intervention_data, 
-              x = ~year, 
+      plot_ly(health_intervention_data,
+              x = ~year,
               y = ~get(selected_intervention),
-              type = 'scatter', 
+              type = 'scatter',
               mode = 'lines+markers',
               line = list(color = '#2e7d32', width = 3),
               marker = list(color = '#2e7d32', size = 8),
-              hovertemplate = paste0("<b>", y_label, ": %{y}</b><br>Year: %{x}<extra></extra>")) %>%
+              hovertemplate = paste0("<b>", y_label, ": %{y}</b><br>Year: %{x}<extra></extra>")
+      ) %>%
         layout(
           xaxis = list(title = "Year", gridcolor = "#f0f0f0"),
-          yaxis = list(title = "Life Expectancy (Years)", gridcolor = "#f0f0f0"),
+          yaxis = list(title = y_label, gridcolor = "#f0f0f0"),
           plot_bgcolor = "#fafafa",
           paper_bgcolor = "white",
           legend = list(x = 0.02, y = 0.98),
@@ -618,34 +619,57 @@ server <- function(input, output, session) {
           hovermode = 'closest'
         )
       
-    } else {
-      # BMI analysis
-      bmi_colors <- c("Normal" = "#4caf50", "Underweight" = "#ff9800",
-                      "Overweight" = "#2196f3", "Obese" = "#9c27b0")
+    } else if (input$trend_analysis == "dev_vs_developing") {
+      # Development Gap Analysis
+      plot_ly(development_comparison,
+              x = ~year,
+              y = ~avg_life_exp,
+              color = ~status,
+              colors = c("Developed" = "#2e7d32", "Developing" = "#d32f2f"),
+              type = 'scatter',
+              mode = 'lines+markers'
+      ) %>%
+        layout(
+          xaxis = list(title = "Year", gridcolor = "#f0f0f0"),
+          yaxis = list(title = "Average Life Expectancy (Years)", gridcolor = "#f0f0f0"),
+          plot_bgcolor = "#fafafa",
+          paper_bgcolor = "white",
+          legend = list(x = 0.02, y = 0.98),
+          margin = list(l = 60, r = 20, t = 20, b = 60),
+          hovermode = 'closest'
+        )
       
-      plot_data <- plot_ly()
+    } else if (input$trend_analysis == "bmi_life") {
+      # BMI & Longevity Relationship
+      bmi_colors <- c(
+        "Normal"      = "#4caf50",
+        "Underweight" = "#ff9800",
+        "Overweight"  = "#2196f3",
+        "Obese"       = "#9c27b0"
+      )
       
-      for (bmi_cat in names(bmi_colors)) {
-        category_data <- bmi_health_analysis %>% filter(bmi_category == bmi_cat)
-        
-        if (nrow(category_data) > 0) {
-          plot_data <- plot_data %>% add_trace(
-            data = category_data,
-            x = ~year,
-            y = ~avg_life_exp,
-            name = bmi_cat,
-            type = 'scatter',
-            mode = 'lines+markers',
-            line = list(color = bmi_colors[[bmi_cat]], width = 3),
-            marker = list(color = bmi_colors[[bmi_cat]], size = 8)
-          )
+      p <- plot_ly()
+      for (cat in names(bmi_colors)) {
+        df_cat <- bmi_health_analysis %>% filter(bmi_category == cat)
+        if (nrow(df_cat) > 0) {
+          p <- p %>%
+            add_trace(
+              data = df_cat,
+              x = ~year,
+              y = ~avg_life_exp,
+              name = cat,
+              type = 'scatter',
+              mode = 'lines+markers',
+              line = list(color = bmi_colors[[cat]], width = 3),
+              marker = list(size = 8)
+            )
         }
       }
       
-      plot_data %>%
+      p %>%
         layout(
           xaxis = list(title = "Year", gridcolor = "#f0f0f0"),
-          yaxis = list(title = "Life Expectancy (Years)", gridcolor = "#f0f0f0"),
+          yaxis = list(title = "Average Life Expectancy (Years)", gridcolor = "#f0f0f0"),
           plot_bgcolor = "#fafafa",
           paper_bgcolor = "white",
           legend = list(x = 0.02, y = 0.98),
@@ -653,12 +677,9 @@ server <- function(input, output, session) {
           hovermode = 'closest'
         )
     }
-    
-    # Apply config to the final plot
-    plot_result %>% config(displayModeBar = FALSE)
   })
+  
 }
-
 # Run the app
 shinyApp(ui = ui, server = server)
 
