@@ -379,7 +379,6 @@ ui <- navbarPage(
         fluidRow(
           column(
             width = 12,
-            h3("BMI Distribution Analysis"),
             tags$ul(style = "font-size: 13px; line-height: 1.5;",
                     tags$li(tags$strong("BMI:"), " The global distribution of Body Mass Index (BMI) reveals a growing divide. In wealthier nations, average BMI levels tend to be higher, often reflecting dietary patterns high in processed foods and reduced physical activity. Emerging economies are beginning to follow similar trends, especially in urban settings. Interestingly, some developing countries face a dual burden: undernutrition in rural areas and rising obesity in cities. This duality underscores how nutrition-related health outcomes are shaped not only by income, but also by education, food access, and urbanization.")
             ),
@@ -453,8 +452,7 @@ ui <- navbarPage(
         ),
         div(style = "margin-top: 20px; width: 100%;",
              h3("Conclusion"),
-             p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy."),
-             p("She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance.")
+             p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy.She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance."),
         )
     )
   )
