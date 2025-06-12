@@ -281,7 +281,7 @@ ui <- navbarPage(
   tabPanel(
     "Exploring The Data",
     value = "exploration",
-    div(class = "page-container", style = "display: flex; flex-direction: row; gap: 30px; align-items: center; justify-content: space-between;",
+    div(class = "page-container", style = "display: flex; flex-direction: row; gap: 5px; align-items: center; justify-content: space-between;",
         # Left Column - Text Content
         div(style = "width: 40%; padding: 10px; overflow-y: auto; max-height: 100%;",
             h3("A few days ago..."),
