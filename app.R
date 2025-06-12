@@ -331,7 +331,7 @@ ui <- navbarPage(
     )
   ),
   
-  # Page 2: World Map
+# Page 2: World Map
   tabPanel(
     "Global Perspective",
     value = "map",
@@ -363,7 +363,23 @@ ui <- navbarPage(
             tags$ul(style = "font-size: 13px; line-height: 1.5;",
                     tags$li(tags$strong("Life Expectancy:"), " Life expectancy tends to be highest in regions such as Western Europe, Canada, Australia, and parts of East Asia. In these areas, people frequently live beyond 80 years due to robust healthcare systems, widespread vaccination, and access to clean environments and quality education. Conversely, in regions such as Central and Sub-Saharan Africa, life expectancy remains significantly lower. This disparity often stems from limited access to healthcare, poor sanitation, malnutrition, and the impact of political instability. The data highlights that while medical advancements are widespread, the benefits are not equally distributed across the globe."),
                     tags$li(tags$strong("Adult Mortality:"), " Adult mortality rates are noticeably higher in countries experiencing war, poverty, or fragile healthcare infrastructures. In many low-income regions, adults face higher risks of death from treatable conditions due to lack of access to emergency medical services or early diagnostics. In contrast, developed countries show significantly lower adult mortality, with most deaths occurring at older ages and often due to chronic conditions. These differences emphasize the critical importance of access to timely and affordable healthcare in determining adult survival outcomes."),
-                    tags$li(tags$strong("Child Mortality:"), " High child mortality rates continue to be a challenge in economically disadvantaged areas. The data shows that regions with limited access to maternal health services, clean water, and immunizations report a much higher number of infant deaths. On the other hand, countries with strong primary healthcare networks have achieved significant reductions in child mortality over the past decade. This illustrates the direct impact that basic public health interventions—such as vaccinations and clean delivery practices—can have on saving young lives."),
+                    tags$li(tags$strong("Child Mortality:"), " High child mortality rates continue to be a challenge in economically disadvantaged areas. The data shows that regions with limited access to maternal health services, clean water, and immunizations report a much higher number of infant deaths. On the other hand, countries with strong primary healthcare networks have achieved significant reductions in child mortality over the past decade. This illustrates the direct impact that basic public health interventions—such as vaccinations and clean delivery practices—can have on saving young lives.")
+            )
+          ),
+          
+          column(
+            width = 7,
+            div(class = "viz-container", style = "height: 100%; min-height: 600px; padding: 10px;",
+                plotlyOutput("world_map", height = "550px")
+            )
+          )
+        ),
+        
+        fluidRow(
+          column(
+            width = 12,
+            h3("BMI Distribution Analysis"),
+            tags$ul(style = "font-size: 13px; line-height: 1.5;",
                     tags$li(tags$strong("BMI:"), " The global distribution of Body Mass Index (BMI) reveals a growing divide. In wealthier nations, average BMI levels tend to be higher, often reflecting dietary patterns high in processed foods and reduced physical activity. Emerging economies are beginning to follow similar trends, especially in urban settings. Interestingly, some developing countries face a dual burden: undernutrition in rural areas and rising obesity in cities. This duality underscores how nutrition-related health outcomes are shaped not only by income, but also by education, food access, and urbanization.")
             ),
             
@@ -379,6 +395,7 @@ ui <- navbarPage(
         )
     )
   ),
+  
   
   # Page 3: Temporal Trends
   tabPanel(
@@ -561,14 +578,20 @@ server <- function(input, output, session) {
       coord_fixed(1.3)
     
     ggplotly(p, tooltip = "text", height = 550) %>%
-      layout(
-        hoverlabel = list(bgcolor = "white", font = list(size = 12)),
-        margin = list(l = 10, r = 10, t = 10, b = 10),
-        showlegend = TRUE
-      ) %>%
-      config(
-        displayModeBar = FALSE  # This disables all toolbar buttons
-      )
+  layout(
+    hoverlabel = list(bgcolor = "white", font = list(size = 12)),
+    margin = list(l = 10, r = 10, t = 10, b = 10),
+    showlegend = TRUE
+  ) %>%
+  config(
+    displayModeBar = TRUE,
+    modeBarButtonsToRemove = list(
+      'pan2d', 'select2d', 'lasso2d', 'resetScale2d', 'hoverClosestCartesian',
+      'hoverCompareCartesian', 'toggleSpikelines', 'autoScale2d'
+    ),
+    modeBarButtonsToAdd = list(),
+    displaylogo = FALSE
+  )
   })
   
   # Trends chart
