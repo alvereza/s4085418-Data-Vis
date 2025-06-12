@@ -281,9 +281,9 @@ ui <- navbarPage(
   tabPanel(
     "Exploring The Data",
     value = "exploration",
-    div(class = "page-container", style = "display: flex; flex-direction: row; gap: 5px; align-items: center; justify-content: space-between;",
+    div(class = "page-container", style = "display: flex; flex-direction: row; gap: 5px; align-items: flex-start; justify-content: space-between;",
         # Left Column - Text Content
-        div(style = "width: 40%; padding: 10px; overflow-y: auto; max-height: 100%;",
+        div(style = "width: 40%; padding: 10px; overflow-y: auto; max-height: 100%;margin-top: 10 px;",
             h3("A few days ago..."),
             p(em("I got a call from home. My grandmother was sick. Really sick. She is about 75 years old and quite weak because of diabetes, bone decay and all the hard jobs she has done when she was younger. However, when I was in Hong Kong on my transit, I got a phone call that she is now in the ICU under life support. By the time I arrived, her condition was critical. She came back this time. This whole scenario deeply moved me. That's why the question I am looking for the answer to is...")),
             
@@ -312,7 +312,7 @@ ui <- navbarPage(
         ),
         
         # Right Column - Data Table
-        div(style = "width: 55%; display: flex; align-items: center; justify-content: center;",
+        div(style = "width: 55%; display: flex; align-items: center; justify-content: center; margin-top: 30px;",
             div(class = "viz-container", style = "width: 100%; overflow-x: auto;",
                 h3("Data Exploration Interface"),
                 p("Filter and explore the raw dataset by country, development status, and key health indicators:"),
@@ -388,9 +388,9 @@ ui <- navbarPage(
           
           
     )
+  )
   ),
   
-  # Page 3: Temporal Trends
   tabPanel(
     "Present Day Comparison",
     value = "trends",
@@ -403,9 +403,9 @@ ui <- navbarPage(
                  div(class = "control-group", style = "margin-bottom: 15px;",
                      selectInput("trend_analysis", "Analysis Focus:",
                                  choices = list(
-                                   "Disease Prevention Progress" = "disease",
-                                   "Development Gap Analysis" = "dev_vs_developing",
-                                   "BMI and Longevity Relationship" = "bmi_life"
+                                   "Disease Prevention Progress"      = "disease",
+                                   "Development Gap Analysis"         = "dev_vs_developing",
+                                   "BMI and Longevity Relationship"   = "bmi_life"
                                  ),
                                  selected = "disease", width = "100%"),
                      
@@ -414,10 +414,10 @@ ui <- navbarPage(
                        selectInput("intervention_type", "Health Intervention:",
                                    choices = list(
                                      "Hepatitis B Vaccination" = "hepatitisb",
-                                     "Measles Control" = "measles",
-                                     "Polio Eradication" = "polio",
-                                     "Diphtheria Prevention" = "diphtheria",
-                                     "HIV/AIDS Response" = "hivaids"
+                                     "Measles Control"        = "measles",
+                                     "Polio Eradication"      = "polio",
+                                     "Diphtheria Prevention"  = "diphtheria",
+                                     "HIV/AIDS Response"      = "hivaids"
                                    ),
                                    selected = "hepatitisb", width = "100%")
                      )
@@ -426,16 +426,13 @@ ui <- navbarPage(
                  div(style = "margin-top: 10px;",
                      h3("Visualization Breakdown"),
                      tags$ul(style = "font-size: 13px; line-height: 1.5;",
-                             tags$li(tags$strong("BMI vs Life Expectancy:"), " Shows that individuals with a 'Normal' BMI live shorter lives than those classified as overweight — reflecting a paradox observed in many epidemiological studies."),
+                             tags$li(tags$strong("BMI vs Life Expectancy:"),      " Shows that individuals with a 'Normal' BMI live shorter lives than those classified as overweight — reflecting a paradox observed in many epidemiological studies."),
                              tags$li(tags$strong("Developed vs Developing Nations:"), " While life expectancy is rising globally, the gap between rich and poor countries remains wide — narrowing only slowly."),
-                             tags$li(tags$strong("Vaccination Trends:"), " The increase in coverage for hepatitis B, polio, and measles maps almost directly to improvements in life expectancy.")
+                             tags$li(tags$strong("Vaccination Trends:"),           " The increase in coverage for hepatitis B, polio, and measles maps almost directly to improvements in life expectancy.")
                      ),
-                     
                      h3("Analysis"),
-                     p("The data trends presented in this dashboard provide strong evidence of global health improvements over the 15-year period, particularly in areas like disease prevention and life expectancy. It is encouraging to observe steady progress in vaccination coverage, with Hepatitis B, polio, and measles showing significant increases over time. These improvements demonstrate the positive impact of coordinated global health initiatives and public health policies, especially in low- and middle-income countries. However, the gap between developed and developing nations remains evident. While both groups show upward trends in life expectancy, developing countries consistently lag behind. This suggests that although medical advancements are becoming more accessible, structural issues such as poverty, limited infrastructure, and unequal resource distribution continue to limit health outcomes for many populations. The data highlights the importance of sustained investment in healthcare access, education, and local health systems. One particularly interesting observation emerged from the BMI and life expectancy relationship. Contrary to popular assumptions, individuals with a 'normal' BMI sometimes showed lower average life expectancy than those in the 'overweight' category. This outcome supports findings from other epidemiological research and highlights the complex nature of health data, where simple classifications do not always reflect broader lived realities. It also suggests that factors like chronic disease, nutrition quality, and healthcare access play important roles beyond BMI values alone. Overall, this analysis reinforced my understanding that data visualization is more than just a technical tool—it is a way of uncovering human stories. By translating large datasets into accessible visuals, we can gain insights into real-world issues and begin to identify where change is most needed. This assignment has helped me appreciate how health data can drive more informed, compassionate, and equitable decision-making."),
-                     
-                     
-                     )
+                     p("The data trends presented in this dashboard provide strong evidence of global health improvements over the 15-year period, particularly in areas like disease prevention and life expectancy. It is encouraging to observe steady progress in vaccination coverage, with Hepatitis B, polio, and measles showing significant increases over time. These improvements demonstrate the positive impact of coordinated global health initiatives and public health policies, especially in low- and middle-income countries. However, the gap between developed and developing nations remains evident. While both groups show upward trends in life expectancy, developing countries consistently lag behind. This suggests that although medical advancements are becoming more accessible, structural issues such as poverty, limited infrastructure, and unequal resource distribution continue to limit health outcomes for many populations. The data highlights the importance of sustained investment in healthcare access, education, and local health systems. One particularly interesting observation emerged from the BMI and life expectancy relationship. Contrary to popular assumptions, individuals with a 'normal' BMI sometimes showed lower average life expectancy than those in the 'overweight' category. This outcome supports findings from other epidemiological research and highlights the complex nature of health data, where simple classifications do not always reflect broader lived realities. It also suggests that factors like chronic disease, nutrition quality, and healthcare access play important roles beyond BMI values alone. Overall, this analysis reinforced my understanding that data visualization is more than just a technical tool—it is a way of uncovering human stories. By translating large datasets into accessible visuals, we can gain insights into real-world issues and begin to identify where change is most needed. This assignment has helped me appreciate how health data can drive more informed, compassionate, and equitable decision-making.")  
+                 )
           ),
           
           column(7,
@@ -444,14 +441,14 @@ ui <- navbarPage(
                  )
           )
         ),
+        
         div(style = "margin-top: 10px; width: 100%;",
-             h3("Conclusion"),
-             p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy.She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance."),
+            h3("Conclusion"),
+            p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy. She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance.")
         )
     )
   )
 )
-
 # Server
 server <- function(input, output, session) {
   
@@ -664,3 +661,4 @@ server <- function(input, output, session) {
 
 # Run the app
 shinyApp(ui = ui, server = server)
+
