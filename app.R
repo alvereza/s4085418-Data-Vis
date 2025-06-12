@@ -413,7 +413,7 @@ ui <- navbarPage(
                      )
                  ),
                  
-                 div(style = "margin-top: 20px;",
+                 div(style = "margin-top: 10px;",
                      h3("Visualization Breakdown"),
                      tags$ul(style = "font-size: 13px; line-height: 1.5;",
                              tags$li(tags$strong("BMI vs Life Expectancy:"), " Shows that individuals with a 'Normal' BMI live shorter lives than those classified as overweight — reflecting a paradox observed in many epidemiological studies."),
@@ -434,7 +434,7 @@ ui <- navbarPage(
                  )
           )
         ),
-        div(style = "margin-top: 20px; width: 100%;",
+        div(style = "margin-top: 5px; width: 100%;",
             h3("Conclusion"),
             p("Ten years ago, critical care like life support, ICU admission, or even timely diagnosis would have been out of reach for families like mine—financially, technologically, and geographically. Today, my grandmother's survival was not just a miracle, but a testament to how far medical science and public health have come. We are witnessing a revolution—where once-impossible treatments are becoming routine, and where hope is no longer a privilege of the wealthy."),
             p("She is still here because the systems around her improved—because researchers pushed boundaries, because data illuminated needs, and because someone, somewhere, used insights like those in this dashboard to plan smarter interventions. It made me realize that behind every row in a dataset is a life that could be saved. That's why I built this dashboard—not just to analyze numbers, but to recognize lives, like hers, that deserve a chance.")
