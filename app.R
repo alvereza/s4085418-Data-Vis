@@ -386,13 +386,7 @@ ui <- navbarPage(
             p("These maps highlight both progress and persistent inequality. Even as global life expectancy increases, many countries are still burdened by preventable deaths.")
           ),
           
-          column(
-            width = 7,
-            div(class = "viz-container", style = "height: 100%; min-height: 600px; padding: 10px;",
-                plotlyOutput("world_map", height = "550px")
-            )
-          )
-        )
+          
     )
   ),
   
